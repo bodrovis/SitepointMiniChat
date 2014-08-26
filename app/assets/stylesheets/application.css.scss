@@ -1,0 +1,18 @@
+@import 'bootstrap';
+@import 'bootstrap/theme';
+
+.social {
+  background: url('logos.png') no-repeat transparent;
+  display: inline-block;
+  &.twitter {
+    width: 50px;
+    height: 42px;
+    background-position: 0 -52px;
+  }
+
+  &.facebook, &.facebook:active {
+    width: 50px;
+    height: 50px;
+    background-position: 0 0;
+  }
+}
