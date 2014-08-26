@@ -2,7 +2,7 @@
 @import 'bootstrap/theme';
 
 .social {
-  background: url('logos.png') no-repeat transparent;
+  background: image-url('logos.png') no-repeat transparent;
   display: inline-block;
   &.twitter {
     width: 50px;
