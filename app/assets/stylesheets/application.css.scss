@@ -16,3 +16,8 @@
     background-position: 0 0;
   }
 }
+
+#comments {
+  max-height: 500px;
+  overflow: auto;
+}
