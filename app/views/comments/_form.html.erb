@@ -1,5 +1,5 @@
 <div class="well">
-  <%= form_for @comment do |f| %>
+  <%= form_for @comment, remote: true do |f| %>
     <div class="form-group">
       <%= f.label :body, 'Enter your comment:' %>
       <%= f.text_area :body, rows: 3, class: 'form-control', required: true, maxlength: 2000 %>
