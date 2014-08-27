@@ -1,4 +1,4 @@
-<li class="media comment" data-id="<%= comment.id %>">
+<li class="media comment">
   <%= link_to image_tag(comment.user.avatar_url, alt: comment.user.name, class: "media-object"),
               comment.user.profile_url, target: '_blank', class: 'pull-left' %>
   <div class="media-body">

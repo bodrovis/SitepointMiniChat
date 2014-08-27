@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments, only: [:new, :create, :index]
+  resources :comments, only: [:new, :create]
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: :sign_out
