@@ -27,6 +27,9 @@ module MiniChat
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
+
     if Rails.env.development?
       config.before_configuration do
         env_file = File.join(Rails.root, 'config', 'local_env.yml')

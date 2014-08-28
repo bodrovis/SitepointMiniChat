@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'thin'
+gem 'faye-rails', '~> 2.0'
 
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
