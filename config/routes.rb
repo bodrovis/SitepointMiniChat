@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:new, :create]
 
   get '/auth/:provider/callback', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy', as: :sign_out
+  get '/sign_out', to: 'sessions#destroy', as: :sign_out
 
   root to: 'comments#new'
   # The priority is based upon order of creation: first created -> highest priority.

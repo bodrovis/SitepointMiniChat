@@ -17,7 +17,7 @@ class Comment < ActiveRecord::Base
   class << self
     def remove_excessive!
       if all.count > 100
-        first(50).delete_all
+        first(all.count - 50).delete_all
       end
     end
   end
