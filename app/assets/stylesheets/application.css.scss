@@ -3,6 +3,7 @@
 
 .social {
   background: image-url('logos.png') no-repeat transparent;
+  display: inline-block;
   &.twitter {
     width: 50px;
     height: 42px;
