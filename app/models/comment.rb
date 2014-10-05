@@ -17,7 +17,7 @@ class Comment < ActiveRecord::Base
   class << self
     def remove_excessive!
       if all.count > 100
-        first(all.count - 50).delete_all
+        order('created_at ASC').limit(all.count - 50).unscoped.delete_all
       end
     end
   end
