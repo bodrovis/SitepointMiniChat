@@ -16,20 +16,6 @@ class Comment < ActiveRecord::Base
 
   after_save :notify_slide_change
 
-  def notify_slide_change
-    Comment.connection.execute "NOTIFY comments, '#{self.id}'"
-    #Comment.connection.execute "NOTIFY comments, '#{self.basic_info_json}'"
-  end
-
-  def basic_info_json
-    JSON.generate({user_name: user.name, user_avatar: user.avatar_url, user_profile: user.profile_url,
-                   body: body, timestamp: timestamp})
-  end
-
-  def timestamp
-    created_at.strftime('%-d %B %Y, %H:%M:%S')
-  end
-
   class << self
     def remove_excessive!
       if all.count > 100
@@ -47,5 +33,21 @@ class Comment < ActiveRecord::Base
     ensure
       Comment.connection.execute "UNLISTEN comments"
     end
+  end
+  
+  def basic_info_json
+    JSON.generate({user_name: user.name, user_avatar: user.avatar_url, user_profile: user.profile_url,
+                   body: body, timestamp: timestamp})
+  end
+
+  def timestamp
+    created_at.strftime('%-d %B %Y, %H:%M:%S')
+  end
+
+  private
+
+  def notify_slide_change
+    Comment.connection.execute "NOTIFY comments, '#{self.id}'"
+    #Comment.connection.execute "NOTIFY comments, '#{self.basic_info_json}'"
   end
 end
