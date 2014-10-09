@@ -1,12 +1,6 @@
-publisher = client.publish('/comments', {
-  message: '<%= j render @comment %>'
-});
-
-publisher.callback(function() {
-  $('#comment_body').val('');
-  $('#new_comment').find("input[type='submit']").val('Submit').prop('disabled', false)
-});
-
-publisher.errback(function() {
-  alert('There was an error while posting your comment.');
-});
+<% if !@comment || @comment.errors.any? %>
+alert('Your comment cannot be saved.');
+<% else %>
+$('#comment_body').val('');
+$('#new_comment').find("input[type='submit']").val('Submit').prop('disabled', false)
+<% end %>

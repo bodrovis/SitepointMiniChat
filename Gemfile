@@ -8,6 +8,7 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry'
 end
 
 group :production do
@@ -25,9 +26,9 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'underscore-rails'
 
-gem 'thin'
-gem 'faye-rails', '~> 2.0'
+gem 'puma'
 
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'

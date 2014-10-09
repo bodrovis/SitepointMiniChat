@@ -14,11 +14,38 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true, length: {maximum: 2000}
 
+  after_save :notify_slide_change
+
+  def notify_slide_change
+    Comment.connection.execute "NOTIFY comments, '#{self.id}'"
+    #Comment.connection.execute "NOTIFY comments, '#{self.basic_info_json}'"
+  end
+
+  def basic_info_json
+    JSON.generate({user_name: user.name, user_avatar: user.avatar_url, user_profile: user.profile_url,
+                   body: body, timestamp: timestamp})
+  end
+
+  def timestamp
+    created_at.strftime('%-d %B %Y, %H:%M:%S')
+  end
+
   class << self
     def remove_excessive!
       if all.count > 100
         order('created_at ASC').limit(all.count - 50).destroy_all
       end
+    end
+
+    def on_change
+      Comment.connection.execute "LISTEN comments"
+      loop do
+        Comment.connection.raw_connection.wait_for_notify do |event, pid, slide|
+          yield slide
+        end
+      end
+    ensure
+      Comment.connection.execute "UNLISTEN comments"
     end
   end
 end

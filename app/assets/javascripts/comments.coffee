@@ -1,15 +1,20 @@
-window.client = new Faye.Client('/faye')
+source = new EventSource('/comments')
 
-client.addExtension {
-  outgoing: (message, callback) ->
-    message.ext = message.ext || {}
-    message.ext.csrfToken = $('meta[name=csrf-token]').attr('content')
-    callback(message)
-}
+source.onmessage = (event) ->
+  $('#comments').find('.media-list').prepend($.parseHTML(event.data))
+
+#  comment_template = _.template($('#comment_temp').html())
+#  comment = $.parseJSON(event.data)
+#  console.log comment
+#  if comment
+#    $('#comments').find('.media-list').prepend(comment_template( {
+#      body: comment['body']
+#      user_name: comment['user_name']
+#      user_avatar: comment['user_avatar']
+#      user_profile: comment['user_profile']
+#      timestamp: comment['timestamp']
+#    } ))
 
 jQuery ->
   $('#new_comment').submit ->
     $(this).find("input[type='submit']").val('Sending...').prop('disabled', true)
-
-  client.subscribe '/comments', (payload) ->
-    $('#comments').find('.media-list').prepend(payload.message) if payload.message
