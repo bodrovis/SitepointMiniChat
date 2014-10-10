@@ -17,7 +17,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: minichat
-  pool: 5
+  pool: 16
   username: postgres
   password: omglol
   host: localhost

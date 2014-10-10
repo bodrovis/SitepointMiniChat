@@ -5,7 +5,6 @@ source.onmessage = (event) ->
 
 #  comment_template = _.template($('#comment_temp').html())
 #  comment = $.parseJSON(event.data)
-#  console.log comment
 #  if comment
 #    $('#comments').find('.media-list').prepend(comment_template( {
 #      body: comment['body']
