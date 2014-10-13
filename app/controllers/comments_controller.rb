@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
         t = render_to_string(partial: 'comment', formats: [:html], locals: {comment: comment})
         sse.write(t)
       end
-        # Comment.on_change do |comment|
-        #sse.write(JSON.parse(comment))
-        # end
+      #   Comment.on_change do |comment|
+      #   sse.write(comment)
+      #   end
     rescue IOError
       # Client Disconnected
     ensure

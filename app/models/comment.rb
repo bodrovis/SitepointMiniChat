@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true, length: {maximum: 2000}
 
-  after_save :notify_comment_added
+  after_create :notify_comment_added
 
   class << self
     def remove_excessive!

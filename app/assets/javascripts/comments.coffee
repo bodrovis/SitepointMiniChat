@@ -17,3 +17,5 @@ source.onmessage = (event) ->
 jQuery ->
   $('#new_comment').submit ->
     $(this).find("input[type='submit']").val('Sending...').prop('disabled', true)
+
+  return
